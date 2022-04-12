@@ -1,0 +1,90 @@
+<%--   <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+        <%@page import="java.util.Iterator"%>
+<%@page import="java.util.Hashtable"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
+<%@ page import="java.io.ByteArrayOutputStream"%>
+<%@ page import="java.io.File"%>
+<%@ page import="java.io.FileInputStream"%>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Wheebox</title>
+</head>
+<body>
+
+ <% String result="";
+    //ArrayList<String> listOfExcel = new ArrayList<String>();
+    try{
+     result= (String) request.getAttribute("gooleSheet");
+    System.out.println("==adada=="+result.toString());
+    }catch(Exception e){
+    	 System.out.println(e);
+    }
+    %>   
+   <h1> Here Is the Record</h1>
+   
+     <div id="datatable">
+     <%=result%>
+       
+       
+       
+     </div>
+     
+<script>
+let excel = <%=listOfExcel%>;
+const myTimeout = setTimeout(myGreeting, 2000);
+
+function myGreeting() {
+	
+	document.getElementById("datatable").innerHTML=excel;
+	}
+
+</body>
+
+</html>  --%> 
+
+
+ <%@page import="org.json.JSONObject"%>
+ <%@page import="java.util.ArrayList" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ <html>   
+ <%  ArrayList<String> gooleSheet = (ArrayList)session.getAttribute("gooleSheet");
+        System.out.println("Sheetttttttttt"+ gooleSheet.get(0));     %>
+<div align="center" id=contactFormId>
+    <table id="contactFormTable"  cellspacing="0" cellpadding="0" border="1px">
+    <%-- <%int count=0; %> --%>
+        <thead>
+            <tr>
+            <th>S.No</th>
+                <th align="center">Password</th>
+                <th align="center">Email ID</th>
+                 <th align="center">Student</th>
+                  <th align="center">Student Not</th>
+            </tr>
+        </thead>
+        <tbody>
+            <core:forEach var="gooleSheet" items="${gooleSheet}">
+                <tr>
+                <%-- <td><%= ++count %></td> --%>
+                    <td><%=gooleSheet.get(0)%></td>
+                     <td><%=gooleSheet.get(1)%></td> 
+                      <td><%=gooleSheet.get(2)%></td>
+                      <td><%=gooleSheet.get(3)%></td>
+                     <td><%=gooleSheet.get(4)%></td>
+                </tr>
+            </core:forEach>
+        </tbody>
+    </table>
+</div>
+</body></html> 
